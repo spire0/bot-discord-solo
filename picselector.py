@@ -1,20 +1,22 @@
 import discord
-import os
+
+from os import path, listdir
 from random import choice
 
-prepath = 'C:\\Users\\xxxxx\\Desktop\\Meu curso em Python\\scripts pv\\bot discord\\images\\'
-escolha = None
-tupla = ('tagged', 'gif', 'realism', 'ahegao')
+valid_options = ('tagged', 'gif', 'realism', 'ahegao')
 
-### menu ###
-async def menu(msgg, reacao):
-    await msgg.edit(embed=discord.Embed(title='Pedido entregue<:zerotwolove:738974003443662918>',
-                    description=None,
-                    color=10038562))
-    global escolha
-    escolha = tupla[int(reacao)-1]
+async def menu(message, reaction):
+    option = valid_options[int(reaction) - 1]
 
-    with open('./images/' + escolha + '/' + choice(os.listdir(prepath + escolha)), 'wb') as image:
-        await msgg.edit(embed=discord.Embed(description=image))
+    image_path = path.join(__dirname, 'images', option)
+    image_random_name = choice(listdir(image_path))
+    image_file = discord.File(path.join(image_path, random_image_name))
 
-    # await msgg.remove_reaction()
+    message_embed = discord.Embed(
+        title='Pedido entregue<:zerotwolove:738974003443662918>',
+        description=None,
+        color=10038562
+    )
+
+    await message.edit(embed=message_embed, file=image_file)
+    await message.remove_reaction()
