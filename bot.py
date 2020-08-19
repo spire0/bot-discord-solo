@@ -59,4 +59,4 @@ async def on_reaction_add(reaction, user):
                 await bmsg.delete()
 
 
-client.run('MzM5MDg5MDkyMDUyNjQ3OTM2.WXYnUw.LHtk5kKBG3LbF1YlcSTFL1sf5Gk')
+client.run('xxxxx')
